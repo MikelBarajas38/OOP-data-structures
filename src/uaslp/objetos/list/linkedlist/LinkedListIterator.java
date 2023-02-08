@@ -18,6 +18,8 @@ public class LinkedListIterator {
         return data;
     }
 
+    //helper functions
+
     public Node getCurrentNode() {
         return currentNode;
     }

@@ -124,7 +124,7 @@ public class LinkedList {
         return new LinkedListIterator(head);
     }
 
-    //Utility Functions
+    //helper Functions
 
     public boolean isEmpty() {
         return head == null || tail == null;
@@ -136,28 +136,33 @@ public class LinkedList {
 
     private void deleteNode(Node node) {
 
+        //node doesn't exists
         if(node == null) {
             return;
         }
 
+        //list contains single element
         if(head == node && tail == node){
             head = null;
             tail = null;
             return;
         }
 
+        //delete first element
         if(head == node) {
             head = head.next;
             head.previous = null;
             return;
         }
 
+        //delete last element
         if(tail == node) {
             tail = tail.previous;
             tail.next = null;
             return;
         }
 
+        //delete any element
         node.previous.next = node.next;
         node.next.previous = node.previous;
 
