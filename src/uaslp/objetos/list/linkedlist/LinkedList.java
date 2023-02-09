@@ -9,12 +9,12 @@ public class LinkedList {
     public void addAtTail(String data) {
 
         Node node = new Node(data);
-        node.setPrevious(tail);
+        node.previous = tail;
 
         if(isEmpty()) {
             head = node;
         } else {
-            tail.setNext(node);
+            tail.next = node;
         }
         tail = node;
         size++;
@@ -24,12 +24,12 @@ public class LinkedList {
     public void addAtFront(String data) {
 
         Node node = new Node(data);
-        node.setNext(head);
+        node.next = head;
 
         if(isEmpty()){
             tail = node;
         } else {
-            head.setPrevious(node);
+            head.previous = node;
         }
         head = node;
         size++;
@@ -80,7 +80,7 @@ public class LinkedList {
             iterator.next();
             current_index++;
         }
-        iterator.getCurrentNode().setData(data);
+        iterator.getCurrentNode().data = data;
 
     }
 
