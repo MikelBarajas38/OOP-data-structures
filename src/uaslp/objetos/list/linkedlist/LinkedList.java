@@ -11,7 +11,7 @@ public class LinkedList {
         Node node = new Node(data);
         node.previous = tail;
 
-        if(this.isEmpty()){
+        if(isEmpty()){
             head = node;
         } else {
             tail.next = node;
@@ -26,7 +26,7 @@ public class LinkedList {
         Node node = new Node(data);
         node.next = head;
 
-        if(this.isEmpty()){
+        if(isEmpty()){
             tail = node;
         } else {
             head.previous = node;
