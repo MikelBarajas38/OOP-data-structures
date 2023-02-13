@@ -2,7 +2,7 @@ package uaslp.objetos.list.arraylist;
 
 public class ArrayListIterator {
     private int currentIndex;
-    private ArrayList list;
+    private final ArrayList list;
 
     ArrayListIterator(ArrayList list){
         this.list = list;

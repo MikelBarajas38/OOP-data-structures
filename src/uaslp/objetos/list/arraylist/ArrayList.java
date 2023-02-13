@@ -83,7 +83,7 @@ public class ArrayList {
 
         while(iterator.hasNext()){
             String currentData = iterator.next();
-            if(currentData == data){
+            if(currentData.equals(data)){
                 array[currentIndex] = DELETE_VALUE;
             }
             currentIndex++;
