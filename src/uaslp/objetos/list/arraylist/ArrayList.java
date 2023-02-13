@@ -133,6 +133,7 @@ public class ArrayList {
         }
 
     }
+
     private void increaseSize() {
         String []newArray = new String[array.length * 2];
 
