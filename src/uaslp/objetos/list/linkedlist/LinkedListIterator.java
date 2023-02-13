@@ -18,6 +18,16 @@ public class LinkedListIterator {
         return data;
     }
 
+    public boolean hasPrevious() {
+        return currentNode != null;
+    }
+
+    public String previous() {
+        String data = currentNode.data;
+        currentNode = currentNode.previous;
+        return data;
+    }
+
     //helper methods
 
     public Node getCurrentNode() {
