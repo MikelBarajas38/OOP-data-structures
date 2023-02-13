@@ -124,7 +124,7 @@ public class LinkedList {
         return new LinkedListIterator(head);
     }
 
-    //helper Functions
+    //helper methods
 
     public boolean isEmpty() {
         return head == null || tail == null;
