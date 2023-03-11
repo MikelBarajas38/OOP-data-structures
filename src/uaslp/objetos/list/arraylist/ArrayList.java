@@ -1,6 +1,9 @@
 package uaslp.objetos.list.arraylist;
 
-public class ArrayList {
+import uaslp.objetos.list.Iterator;
+import uaslp.objetos.list.List;
+
+public class ArrayList implements List {
 
     private static final int INITIAL_SIZE = 2;
     private static final String DELETE_VALUE = null;
@@ -78,7 +81,7 @@ public class ArrayList {
 
     public void removeAllWithValue(String data) {
 
-        ArrayListIterator iterator = getIterator();
+        Iterator iterator = getIterator();
         int currentIndex = 0;
 
         while(iterator.hasNext()){
@@ -96,22 +99,26 @@ public class ArrayList {
         return size;
     }
 
-    public int getMaxCapacity() {
-        return array.length;
+    public boolean isEmpty() {
+        return size == 0;
     }
 
-    public ArrayListIterator getIterator(){
+    public Iterator getIterator(){
         return new ArrayListIterator(this);
     }
 
-    //helper methods
+    //internal methods
+
+    private int getMaxCapacity() {
+        return array.length;
+    }
 
     //probably a bad idea, wouldn't allow storing null strings in list. O(n)
     private void cleanList() {
 
         String []newArray = new String[array.length];
 
-        ArrayListIterator iterator = getIterator();
+        Iterator iterator = getIterator();
         int newIndex = 0;
         int itemsDeleted = 0;
 
@@ -138,7 +145,7 @@ public class ArrayList {
         String []newArray = new String[array.length * 2];
 
         //System.arraycopy(array, 0, newArray, 0, size);
-        ArrayListIterator iterator = getIterator();
+        Iterator iterator = getIterator();
         int newIndex = 0;
 
         while(iterator.hasNext()){
@@ -153,7 +160,7 @@ public class ArrayList {
         String []newArray = new String[array.length / 2];
 
         //System.arraycopy(array, 0, newArray, 0, size);
-        ArrayListIterator iterator = getIterator();
+        Iterator iterator = getIterator();
         int newIndex = 0;
 
         while(iterator.hasNext()){

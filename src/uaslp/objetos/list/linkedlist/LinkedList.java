@@ -1,6 +1,9 @@
 package uaslp.objetos.list.linkedlist;
 
-public class LinkedList {
+import uaslp.objetos.list.Iterator;
+import uaslp.objetos.list.List;
+
+public class LinkedList implements List {
 
     private Node head;
     private Node tail;
@@ -42,7 +45,8 @@ public class LinkedList {
             return; //error handling
         }
 
-        LinkedListIterator iterator = getIterator();
+        //cast is needed to make use of getCurrentNode internal method
+        LinkedListIterator iterator = (LinkedListIterator) getIterator();
         int current_index = 0;
 
         while(iterator.hasNext() && current_index != index) {
@@ -56,7 +60,7 @@ public class LinkedList {
 
     public void removeAll() {
 
-        LinkedListIterator iterator = getIterator();
+        LinkedListIterator iterator = (LinkedListIterator) getIterator();
 
         while(iterator.hasNext()) {
             Node temp = iterator.getCurrentNode();
@@ -73,7 +77,7 @@ public class LinkedList {
             return; //error handling
         }
 
-        LinkedListIterator iterator = getIterator();
+        LinkedListIterator iterator = (LinkedListIterator) getIterator();
         int current_index = 0;
 
         while(iterator.hasNext() && current_index != index) {
@@ -90,7 +94,7 @@ public class LinkedList {
             return null; //error handling
         }
 
-        LinkedListIterator iterator = getIterator();
+        Iterator iterator = getIterator();
         int current_index = 0;
 
         while(iterator.hasNext() && current_index != index) {
@@ -103,7 +107,7 @@ public class LinkedList {
 
     public void removeAllWithValue(String data){
 
-        LinkedListIterator iterator = getIterator();
+        LinkedListIterator iterator = (LinkedListIterator) getIterator();
 
         while(iterator.hasNext()) {
             Node temp = iterator.getCurrentNode();
@@ -120,11 +124,11 @@ public class LinkedList {
         return size;
     }
 
-    public LinkedListIterator getIterator() {
+    public Iterator getIterator() {
         return new LinkedListIterator(head);
     }
 
-    //helper methods
+    //internal methods
 
     public boolean isEmpty() {
         return head == null || tail == null;
