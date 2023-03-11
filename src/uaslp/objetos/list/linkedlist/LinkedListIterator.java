@@ -35,4 +35,5 @@ public class LinkedListIterator implements Iterator {
     public Node getCurrentNode() {
         return currentNode;
     }
+
 }

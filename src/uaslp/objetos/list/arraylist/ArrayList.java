@@ -30,7 +30,7 @@ public class ArrayList implements List {
             increaseSize();
         }
 
-        ArrayListIterator iterator = getIteratorAt(size-1);
+        Iterator iterator = getIteratorAt(size-1);
         int currentIndex = size;
 
         while(iterator.hasPrevious()) {
@@ -183,7 +183,7 @@ public class ArrayList implements List {
         return index >= size || index < 0;
     }
 
-    private ArrayListIterator getIteratorAt(int index){
+    private Iterator getIteratorAt(int index){
         return new ArrayListIterator(this, index);
     }
 

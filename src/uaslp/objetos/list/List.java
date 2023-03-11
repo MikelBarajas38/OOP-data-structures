@@ -21,4 +21,5 @@ public interface List {
     boolean isEmpty();
 
     Iterator getIterator();
+
 }

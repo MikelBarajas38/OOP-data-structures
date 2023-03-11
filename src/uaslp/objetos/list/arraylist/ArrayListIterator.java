@@ -3,6 +3,7 @@ package uaslp.objetos.list.arraylist;
 import uaslp.objetos.list.Iterator;
 
 public class ArrayListIterator implements Iterator {
+
     private int currentIndex;
     private final ArrayList list;
 

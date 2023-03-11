@@ -171,4 +171,5 @@ public class LinkedList implements List {
         node.next.previous = node.previous;
 
     }
+
 }
