@@ -1,16 +1,16 @@
 package uaslp.objetos.list.linkedlist;
 
-class Node {
+class Node <T>{
 
-    String data;
-    Node next;
-    Node previous;
+    T data;
+    Node<T> next;
+    Node<T> previous;
 
     Node() {
         data = null;
     }
 
-    Node(String data) {
+    Node(T data) {
         this.data = data;
     }
 

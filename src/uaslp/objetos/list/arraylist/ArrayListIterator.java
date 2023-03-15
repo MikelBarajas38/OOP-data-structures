@@ -2,17 +2,17 @@ package uaslp.objetos.list.arraylist;
 
 import uaslp.objetos.list.Iterator;
 
-public class ArrayListIterator implements Iterator {
+public class ArrayListIterator <T> implements Iterator<T> {
 
     private int currentIndex;
-    private final ArrayList list;
+    private final ArrayList<T> list;
 
-    ArrayListIterator(ArrayList list){
+    ArrayListIterator(ArrayList<T> list){
         this.list = list;
         currentIndex = 0;
     }
 
-    ArrayListIterator(ArrayList list, int index){
+    ArrayListIterator(ArrayList<T> list, int index){
         this.list = list;
         currentIndex = index;
     }
@@ -21,8 +21,8 @@ public class ArrayListIterator implements Iterator {
         return currentIndex < list.getSize();
     }
 
-    public String next() {
-        String data = list.getAt(currentIndex);
+    public T next() {
+        T data = list.getAt(currentIndex);
         currentIndex++;
         return data;
     }
@@ -31,8 +31,8 @@ public class ArrayListIterator implements Iterator {
         return currentIndex >= 0;
     }
 
-    public String previous() {
-        String data = list.getAt(currentIndex);
+    public T previous() {
+        T data = list.getAt(currentIndex);
         currentIndex--;
         return data;
     }

@@ -3,15 +3,15 @@ package uaslp.objetos.list.linkedlist;
 import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
 
-public class LinkedList implements List {
+public class LinkedList <T> implements List<T> {
 
-    private Node head;
-    private Node tail;
+    private Node<T> head;
+    private Node<T> tail;
     private int size;
 
-    public void addAtTail(String data) {
+    public void addAtTail(T data) {
 
-        Node node = new Node(data);
+        Node<T> node = new Node<>(data);
         node.previous = tail;
 
         if(isEmpty()) {
@@ -24,9 +24,9 @@ public class LinkedList implements List {
 
     }
 
-    public void addAtFront(String data) {
+    public void addAtFront(T data) {
 
-        Node node = new Node(data);
+        Node<T> node = new Node<>(data);
         node.next = head;
 
         if(isEmpty()){
@@ -46,7 +46,7 @@ public class LinkedList implements List {
         }
 
         //cast is needed to make use of getCurrentNode internal method
-        LinkedListIterator iterator = (LinkedListIterator) getIterator();
+        LinkedListIterator<T> iterator = (LinkedListIterator<T>) getIterator();
         int current_index = 0;
 
         while(iterator.hasNext() && current_index != index) {
@@ -60,10 +60,10 @@ public class LinkedList implements List {
 
     public void removeAll() {
 
-        LinkedListIterator iterator = (LinkedListIterator) getIterator();
+        LinkedListIterator<T> iterator = (LinkedListIterator<T>) getIterator();
 
         while(iterator.hasNext()) {
-            Node temp = iterator.getCurrentNode();
+            Node<T> temp = iterator.getCurrentNode();
             iterator.next();
             deleteNode(temp);
         }
@@ -71,30 +71,31 @@ public class LinkedList implements List {
 
     }
 
-    public void setAt(int index, String data){
+    public void setAt(int index, T data){
 
         if(isInvalidIndex(index)){
             return; //error handling
         }
 
-        LinkedListIterator iterator = (LinkedListIterator) getIterator();
+        LinkedListIterator<T> iterator = (LinkedListIterator<T>) getIterator();
         int current_index = 0;
 
         while(iterator.hasNext() && current_index != index) {
             iterator.next();
             current_index++;
         }
+
         iterator.getCurrentNode().data = data;
 
     }
 
-    public String getAt(int index){
+    public T getAt(int index){
 
         if(isInvalidIndex(index)){
             return null; //error handling
         }
 
-        Iterator iterator = getIterator();
+        Iterator<T> iterator = getIterator();
         int current_index = 0;
 
         while(iterator.hasNext() && current_index != index) {
@@ -105,12 +106,12 @@ public class LinkedList implements List {
 
     }
 
-    public void removeAllWithValue(String data){
+    public void removeAllWithValue(T data){
 
-        LinkedListIterator iterator = (LinkedListIterator) getIterator();
+        LinkedListIterator<T> iterator = (LinkedListIterator<T>) getIterator();
 
         while(iterator.hasNext()) {
-            Node temp = iterator.getCurrentNode();
+            Node<T> temp = iterator.getCurrentNode();
             if(temp.data.equals(data)){ //compare value
                 deleteNode(temp);
                 size--;
@@ -124,8 +125,8 @@ public class LinkedList implements List {
         return size;
     }
 
-    public Iterator getIterator() {
-        return new LinkedListIterator(head);
+    public Iterator<T> getIterator() {
+        return new LinkedListIterator<>(head);
     }
 
     //internal methods
@@ -138,7 +139,7 @@ public class LinkedList implements List {
         return index >= size || index < 0;
     }
 
-    private void deleteNode(Node node) {
+    private void deleteNode(Node<T> node) {
 
         //node doesn't exists
         if(node == null) {

@@ -9,8 +9,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        List list1 = new LinkedList();
-        List list2 = new ArrayList();
+        List<Object> list1 = new LinkedList<>();
+        List<Object> list2 = new ArrayList<>();
 
         System.out.println("\nTest list1 (LinkedList)");
         testAddAtFront(list1);
@@ -29,29 +29,29 @@ public class Main {
         testRemoveAllWithValue(list2);
     }
 
-    private static void testRemoveAllWithValue(List list) {
+    private static void testRemoveAllWithValue(List<Object> list) {
         System.out.println("\n-> Test remove all with value.");
         list.addAtTail("A");
-        list.addAtTail("B");
-        list.addAtTail("B");
+        list.addAtTail(1);
+        list.addAtTail(1);
         list.addAtTail("A");
-        list.addAtTail("B");
+        list.addAtTail(1);
         list.addAtTail("A");
         printList(list);
         System.out.println("Size: " + list.getSize() + " Capacity: ");
         list.removeAllWithValue("A");
         printList(list);
         System.out.println("Size: " + list.getSize());
-        list.removeAllWithValue("B");
+        list.removeAllWithValue(1);
         printList(list);
         System.out.println("Size: " + list.getSize());
     }
 
-    private static void testGetAtIndex(List list) {
+    private static void testGetAtIndex(List<Object>  list) {
         System.out.println("\n-> Test get at index.");
         list.addAtTail("0");
-        list.addAtTail("1");
-        list.addAtTail("2");
+        list.addAtTail(1);
+        list.addAtTail('2');
         printList(list);
         System.out.println(list.getAt(0));
         System.out.println(list.getAt(1));
@@ -60,27 +60,27 @@ public class Main {
         list.removeAll();
     }
 
-    private static void testSetAtIndex(List list) {
+    private static void testSetAtIndex(List<Object>  list) {
         System.out.println("\n-> Test set at index.");
         list.addAtTail("A");
-        list.addAtTail("B");
-        list.addAtTail("C");
+        list.addAtTail(2);
+        list.addAtTail(3);
         list.addAtTail("D");
         printList(list);
         list.setAt(0,"X");
-        list.setAt(1,"Y");
+        list.setAt(1,10);
         list.setAt(3,"Z");
         list.setAt(4,"ERROR");
         printList(list);
         list.removeAll();
     }
 
-    private static void testRemoveNthElement(List list) {
+    private static void testRemoveNthElement(List<Object>  list) {
         System.out.println("\n-> Test remove nth-element.");
         list.addAtTail("A");
-        list.addAtTail("B");
+        list.addAtTail(2);
         list.addAtTail("C");
-        list.addAtTail("D");
+        list.addAtTail(4);
         printList(list);
         System.out.println("Size: " + list.getSize());
         list.remove(4);
@@ -95,28 +95,28 @@ public class Main {
         list.remove(0);
     }
 
-    private static void testAddAtTail(List list) {
+    private static void testAddAtTail(List<Object>  list) {
         System.out.println("\n-> Test add at Tail.");
         list.addAtTail("A");
-        list.addAtTail("B");
-        list.addAtTail("C");
+        list.addAtTail('C');
+        list.addAtTail(3);
         printList(list);
         System.out.println("Size: " + list.getSize());
         list.removeAll();
     }
 
-    private static void testAddAtFront(List list) {
+    private static void testAddAtFront(List<Object>  list) {
         System.out.println("\n-> Test add at Front.");
         list.addAtFront("A");
-        list.addAtFront("B");
-        list.addAtFront("C");
+        list.addAtFront(2);
+        list.addAtFront('C');
         printList(list);
         System.out.println("Size: " + list.getSize());
         list.removeAll();
     }
 
-    public static void printList(List list) {
-        Iterator it = list.getIterator();
+    public static void printList(List<Object> list) {
+        Iterator<Object> it = list.getIterator();
         System.out.print("List contents: ");
         while(it.hasNext()){
             System.out.print(it.next() + " ");

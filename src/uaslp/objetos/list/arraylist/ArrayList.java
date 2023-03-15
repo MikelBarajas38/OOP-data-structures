@@ -3,18 +3,17 @@ package uaslp.objetos.list.arraylist;
 import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
 
-public class ArrayList implements List {
+public class ArrayList <T> implements List<T> {
 
     private static final int INITIAL_SIZE = 2;
-    private static final String DELETE_VALUE = null;
-    private String []array;
+    private T []array;
     private int size;
 
     public ArrayList() {
-        array = new String[INITIAL_SIZE];
+        array = (T[])(new Object[INITIAL_SIZE]);
     }
 
-    public void addAtTail(String data) {
+    public void addAtTail(T data) {
 
         if(isFull()) {
             increaseSize();
@@ -24,13 +23,13 @@ public class ArrayList implements List {
         size++;
     }
 
-    public void addAtFront(String data) {
+    public void addAtFront(T data) {
 
         if(isFull()) {
             increaseSize();
         }
 
-        Iterator iterator = getIteratorAt(size-1);
+        Iterator<T> iterator = getIteratorAt(size-1);
         int currentIndex = size;
 
         while(iterator.hasPrevious()) {
@@ -48,18 +47,24 @@ public class ArrayList implements List {
             return; //error handling
         }
 
-        array[index] = DELETE_VALUE;
+        for(int i = index ; i < size - 1; i++){
+            array[i] = array[i+1];
+        }
 
-        cleanList();
+        size--;
+
+        if(shouldDecrease()){
+            decreaseSize();
+        }
     }
 
     //logical deletion, taking advantage of garbage collector
     public void removeAll() {
-        array = new String[INITIAL_SIZE];
+        array = (T[])(new Object[INITIAL_SIZE]);
         size = 0;
     }
 
-    public void setAt(int index, String data) {
+    public void setAt(int index, T data) {
 
         if(isInvalidIndex(index)){
             return; //error handling
@@ -69,7 +74,7 @@ public class ArrayList implements List {
 
     }
 
-    public String getAt(int index) {
+    public T getAt(int index) {
 
         if(isInvalidIndex(index)){
             return null; //error handling
@@ -79,20 +84,16 @@ public class ArrayList implements List {
 
     }
 
-    public void removeAllWithValue(String data) {
+    public void removeAllWithValue(T data) {
 
-        Iterator iterator = getIterator();
-        int currentIndex = 0;
+        Iterator<T> iterator = getIterator();
 
-        while(iterator.hasNext()){
-            String currentData = iterator.next();
-            if(currentData.equals(data)){
-                array[currentIndex] = DELETE_VALUE;
+        for(int currentIndex = size-1; currentIndex >= 0; currentIndex--){
+            if(array[currentIndex].equals(data)){
+                remove(currentIndex);
             }
-            currentIndex++;
         }
 
-        cleanList();
     }
 
     public int getSize() {
@@ -103,8 +104,8 @@ public class ArrayList implements List {
         return size == 0;
     }
 
-    public Iterator getIterator(){
-        return new ArrayListIterator(this);
+    public Iterator<T> getIterator(){
+        return new ArrayListIterator<>(this);
     }
 
     //internal methods
@@ -113,39 +114,11 @@ public class ArrayList implements List {
         return array.length;
     }
 
-    //probably a bad idea, wouldn't allow storing null strings in list. O(n)
-    private void cleanList() {
-
-        String []newArray = new String[array.length];
-
-        Iterator iterator = getIterator();
-        int newIndex = 0;
-        int itemsDeleted = 0;
-
-        while(iterator.hasNext()){
-            String data = iterator.next();
-            if(data != DELETE_VALUE){
-                newArray[newIndex] = data;
-                newIndex++;
-            } else {
-                itemsDeleted++;
-            }
-        }
-
-        array = newArray;
-        size -= itemsDeleted;
-
-        if(shouldDecrease()){
-            decreaseSize();
-        }
-
-    }
-
     private void increaseSize() {
-        String []newArray = new String[array.length * 2];
+        T []newArray = (T[])(new Object[array.length * 2]);
 
         //System.arraycopy(array, 0, newArray, 0, size);
-        Iterator iterator = getIterator();
+        Iterator<T> iterator = getIterator();
         int newIndex = 0;
 
         while(iterator.hasNext()){
@@ -157,10 +130,10 @@ public class ArrayList implements List {
     }
 
     private void decreaseSize() {
-        String []newArray = new String[array.length / 2];
+        T []newArray = (T[])(new Object[array.length / 2]);
 
         //System.arraycopy(array, 0, newArray, 0, size);
-        Iterator iterator = getIterator();
+        Iterator<T> iterator = getIterator();
         int newIndex = 0;
 
         while(iterator.hasNext()){
@@ -183,8 +156,8 @@ public class ArrayList implements List {
         return index >= size || index < 0;
     }
 
-    private Iterator getIteratorAt(int index){
-        return new ArrayListIterator(this, index);
+    private Iterator<T> getIteratorAt(int index){
+        return new ArrayListIterator<>(this, index);
     }
 
 }
