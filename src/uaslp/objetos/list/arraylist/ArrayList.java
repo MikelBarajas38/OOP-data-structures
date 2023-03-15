@@ -86,8 +86,6 @@ public class ArrayList <T> implements List<T> {
 
     public void removeAllWithValue(T data) {
 
-        Iterator<T> iterator = getIterator();
-
         for(int currentIndex = size-1; currentIndex >= 0; currentIndex--){
             if(array[currentIndex].equals(data)){
                 remove(currentIndex);
