@@ -129,11 +129,11 @@ public class LinkedList <T> implements List<T> {
         return new LinkedListIterator<>(head);
     }
 
-    //internal methods
-
     public boolean isEmpty() {
         return head == null || tail == null;
     }
+
+    //internal methods
 
     private boolean isInvalidIndex(int index){
         return index >= size || index < 0;
