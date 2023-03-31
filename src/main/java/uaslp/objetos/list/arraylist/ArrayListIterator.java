@@ -1,6 +1,7 @@
 package uaslp.objetos.list.arraylist;
 
 import uaslp.objetos.list.Iterator;
+import uaslp.objetos.list.exceptions.BadIndexException;
 
 public class ArrayListIterator <T> implements Iterator<T> {
 
@@ -22,7 +23,11 @@ public class ArrayListIterator <T> implements Iterator<T> {
     }
 
     public T next() {
-        T data = list.getAt(currentIndex);
+        T data = null;
+        try{
+            data = list.getAt(currentIndex);
+        } catch(BadIndexException ignored){
+        }
         currentIndex++;
         return data;
     }
@@ -32,7 +37,11 @@ public class ArrayListIterator <T> implements Iterator<T> {
     }
 
     public T previous() {
-        T data = list.getAt(currentIndex);
+        T data = null;
+        try{
+            data = list.getAt(currentIndex);
+        } catch(BadIndexException ignored){
+        }
         currentIndex--;
         return data;
     }

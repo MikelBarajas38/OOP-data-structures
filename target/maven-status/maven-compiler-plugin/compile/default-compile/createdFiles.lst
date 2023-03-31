@@ -1,8 +1,11 @@
+uaslp/objetos/list/exceptions/BadIndexException.class
 uaslp/objetos/list/linkedlist/Node.class
 uaslp/objetos/list/arraylist/ArrayListIterator.class
 test/Main.class
 uaslp/objetos/list/List.class
 uaslp/objetos/list/linkedlist/LinkedListIterator.class
 uaslp/objetos/list/linkedlist/LinkedList.class
+uaslp/objetos/list/exceptions/CollectionsException.class
 uaslp/objetos/list/Iterator.class
 uaslp/objetos/list/arraylist/ArrayList.class
+uaslp/objetos/list/exceptions/NotNullAllowedException.class

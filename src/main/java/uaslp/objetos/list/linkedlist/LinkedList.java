@@ -2,6 +2,8 @@ package uaslp.objetos.list.linkedlist;
 
 import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
+import uaslp.objetos.list.exceptions.BadIndexException;
+import uaslp.objetos.list.exceptions.NotNullAllowedException;
 
 public class LinkedList <T> implements List<T> {
 
@@ -9,7 +11,11 @@ public class LinkedList <T> implements List<T> {
     private Node<T> tail;
     private int size;
 
-    public void addAtTail(T data) {
+    public void addAtTail(T data) throws NotNullAllowedException {
+
+        if(data == null) {
+            throw new NotNullAllowedException();
+        }
 
         Node<T> node = new Node<>(data);
         node.previous = tail;
@@ -24,7 +30,11 @@ public class LinkedList <T> implements List<T> {
 
     }
 
-    public void addAtFront(T data) {
+    public void addAtFront(T data) throws NotNullAllowedException{
+
+        if(data == null) {
+            throw new NotNullAllowedException();
+        }
 
         Node<T> node = new Node<>(data);
         node.next = head;
@@ -39,10 +49,10 @@ public class LinkedList <T> implements List<T> {
 
     }
 
-    public void remove(int index) {
+    public void remove(int index) throws BadIndexException{
 
         if(isInvalidIndex(index)){
-            return; //error handling
+            throw new BadIndexException();
         }
 
         //cast is needed to make use of getCurrentNode internal method
@@ -71,10 +81,14 @@ public class LinkedList <T> implements List<T> {
 
     }
 
-    public void setAt(int index, T data){
+    public void setAt(int index, T data) throws BadIndexException, NotNullAllowedException{
+
+        if(data == null) {
+            throw new NotNullAllowedException();
+        }
 
         if(isInvalidIndex(index)){
-            return; //error handling
+            throw new BadIndexException();
         }
 
         LinkedListIterator<T> iterator = (LinkedListIterator<T>) getIterator();
@@ -89,10 +103,10 @@ public class LinkedList <T> implements List<T> {
 
     }
 
-    public T getAt(int index){
+    public T getAt(int index) throws BadIndexException{
 
         if(isInvalidIndex(index)){
-            return null; //error handling
+            throw new BadIndexException();
         }
 
         Iterator<T> iterator = getIterator();

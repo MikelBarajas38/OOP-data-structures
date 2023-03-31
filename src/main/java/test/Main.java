@@ -1,8 +1,13 @@
 package test;
 
+import java.io.IOException;
+
 import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
 import uaslp.objetos.list.arraylist.ArrayList;
+import uaslp.objetos.list.exceptions.BadIndexException;
+import uaslp.objetos.list.exceptions.CollectionsException;
+import uaslp.objetos.list.exceptions.NotNullAllowedException;
 import uaslp.objetos.list.linkedlist.LinkedList;
 
 public class Main {
@@ -12,24 +17,30 @@ public class Main {
         List<Object> list1 = new LinkedList<>();
         List<Object> list2 = new ArrayList<>();
 
-        System.out.println("\nTest list1 (LinkedList)");
-        testAddAtFront(list1);
-        testAddAtTail(list1);
-        testRemoveNthElement(list1);
-        testSetAtIndex(list1);
-        testGetAtIndex(list1);
-        testRemoveAllWithValue(list1);
+        try {
 
-        System.out.println("\nTest list2 (ArrayList)");
-        testAddAtFront(list2);
-        testAddAtTail(list2);
-        testRemoveNthElement(list2);
-        testSetAtIndex(list2);
-        testGetAtIndex(list2);
-        testRemoveAllWithValue(list2);
+            System.out.println("\nTest list1 (LinkedList)");
+            testAddAtFront(list1);
+            testAddAtTail(list1);
+            testRemoveNthElement(list1);
+            testSetAtIndex(list1);
+            testGetAtIndex(list1);
+            testRemoveAllWithValue(list1);
+
+            System.out.println("\nTest list2 (ArrayList)");
+            testAddAtFront(list2);
+            testAddAtTail(list2);
+            testRemoveNthElement(list2);
+            testSetAtIndex(list2);
+            testGetAtIndex(list2);
+            testRemoveAllWithValue(list2);
+
+        } catch (CollectionsException ex) {
+            ex.printStackTrace();
+        }
     }
 
-    private static void testRemoveAllWithValue(List<Object> list) {
+    private static void testRemoveAllWithValue(List<Object> list) throws NotNullAllowedException {
         System.out.println("\n-> Test remove all with value.");
         list.addAtTail("A");
         list.addAtTail(1);
@@ -47,7 +58,7 @@ public class Main {
         System.out.println("Size: " + list.getSize());
     }
 
-    private static void testGetAtIndex(List<Object>  list) {
+    private static void testGetAtIndex(List<Object> list) throws CollectionsException {
         System.out.println("\n-> Test get at index.");
         list.addAtTail("0");
         list.addAtTail(1);
@@ -60,22 +71,22 @@ public class Main {
         list.removeAll();
     }
 
-    private static void testSetAtIndex(List<Object>  list) {
+    private static void testSetAtIndex(List<Object> list) throws CollectionsException {
         System.out.println("\n-> Test set at index.");
         list.addAtTail("A");
         list.addAtTail(2);
         list.addAtTail(3);
         list.addAtTail("D");
         printList(list);
-        list.setAt(0,"X");
-        list.setAt(1,10);
-        list.setAt(3,"Z");
-        list.setAt(4,"ERROR");
+        list.setAt(0, "X");
+        list.setAt(1, 10);
+        list.setAt(3, "Z");
+        list.setAt(4, "ERROR");
         printList(list);
         list.removeAll();
     }
 
-    private static void testRemoveNthElement(List<Object>  list) {
+    private static void testRemoveNthElement(List<Object> list) throws CollectionsException{
         System.out.println("\n-> Test remove nth-element.");
         list.addAtTail("A");
         list.addAtTail(2);
@@ -95,7 +106,7 @@ public class Main {
         list.remove(0);
     }
 
-    private static void testAddAtTail(List<Object>  list) {
+    private static void testAddAtTail(List<Object> list) throws NotNullAllowedException {
         System.out.println("\n-> Test add at Tail.");
         list.addAtTail("A");
         list.addAtTail('C');
@@ -105,7 +116,7 @@ public class Main {
         list.removeAll();
     }
 
-    private static void testAddAtFront(List<Object>  list) {
+    private static void testAddAtFront(List<Object> list) throws NotNullAllowedException {
         System.out.println("\n-> Test add at Front.");
         list.addAtFront("A");
         list.addAtFront(2);
@@ -118,10 +129,10 @@ public class Main {
     public static void printList(List<Object> list) {
         Iterator<Object> it = list.getIterator();
         System.out.print("List contents: ");
-        while(it.hasNext()){
+        while (it.hasNext()) {
             System.out.print(it.next() + " ");
         }
         System.out.print("\n");
     }
-    
+
 }

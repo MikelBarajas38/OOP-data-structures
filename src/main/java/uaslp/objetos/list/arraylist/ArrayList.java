@@ -3,6 +3,9 @@ package uaslp.objetos.list.arraylist;
 import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
 
+import uaslp.objetos.list.exceptions.BadIndexException;
+import uaslp.objetos.list.exceptions.NotNullAllowedException;
+
 public class ArrayList <T> implements List<T> {
 
     private static final int INITIAL_SIZE = 2;
@@ -13,7 +16,11 @@ public class ArrayList <T> implements List<T> {
         array = (T[])(new Object[INITIAL_SIZE]);
     }
 
-    public void addAtTail(T data) {
+    public void addAtTail(T data) throws NotNullAllowedException {
+
+        if(data == null) {
+            throw new NotNullAllowedException();
+        }
 
         if(isFull()) {
             increaseSize();
@@ -23,7 +30,11 @@ public class ArrayList <T> implements List<T> {
         size++;
     }
 
-    public void addAtFront(T data) {
+    public void addAtFront(T data) throws NotNullAllowedException {
+
+        if(data == null) {
+            throw new NotNullAllowedException();
+        }
 
         if(isFull()) {
             increaseSize();
@@ -41,10 +52,10 @@ public class ArrayList <T> implements List<T> {
         size++;
     }
 
-    public void remove(int index) {
+    public void remove(int index) throws BadIndexException {
 
         if(isInvalidIndex(index)){
-            return; //error handling
+            throw new BadIndexException();
         }
 
         for(int i = index ; i < size - 1; i++){
@@ -64,20 +75,24 @@ public class ArrayList <T> implements List<T> {
         size = 0;
     }
 
-    public void setAt(int index, T data) {
+    public void setAt(int index, T data) throws BadIndexException, NotNullAllowedException {
+
+        if(data == null) {
+            throw new NotNullAllowedException();
+        }
 
         if(isInvalidIndex(index)){
-            return; //error handling
+            throw new BadIndexException();
         }
 
         array[index] = data;
 
     }
 
-    public T getAt(int index) {
+    public T getAt(int index) throws BadIndexException{
 
         if(isInvalidIndex(index)){
-            return null; //error handling
+            throw new BadIndexException();
         }
 
         return array[index];
@@ -88,7 +103,10 @@ public class ArrayList <T> implements List<T> {
 
         for(int currentIndex = size-1; currentIndex >= 0; currentIndex--){
             if(array[currentIndex].equals(data)){
-                remove(currentIndex);
+                try {
+                    remove(currentIndex);
+                } catch(BadIndexException ignored){
+                }
             }
         }
 
