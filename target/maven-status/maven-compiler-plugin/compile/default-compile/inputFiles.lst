@@ -1,3 +1,6 @@
+/home/mikel/IdeaProjects/dataStructures/src/main/java/uaslp/objetos/list/exceptions/NotNullAllowedException.java
+/home/mikel/IdeaProjects/dataStructures/src/main/java/uaslp/objetos/list/exceptions/CollectionsException.java
+/home/mikel/IdeaProjects/dataStructures/src/main/java/uaslp/objetos/list/exceptions/BadIndexException.java
 /home/mikel/IdeaProjects/dataStructures/src/main/java/uaslp/objetos/list/linkedlist/LinkedListIterator.java
 /home/mikel/IdeaProjects/dataStructures/src/main/java/uaslp/objetos/list/Iterator.java
 /home/mikel/IdeaProjects/dataStructures/src/main/java/test/Main.java

@@ -1,5 +1,5 @@
 package uaslp.objetos.list.exceptions;
 
-public class BadIndexException extends CollectionsException{
+public class BadIndexException extends RuntimeException{
 
 }

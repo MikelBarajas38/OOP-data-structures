@@ -18,13 +18,9 @@ public class ArrayList <T> implements List<T> {
 
     public void addAtTail(T data) throws NotNullAllowedException {
 
-        if(data == null) {
-            throw new NotNullAllowedException();
-        }
+        validateData(data);
 
-        if(isFull()) {
-            increaseSize();
-        }
+        validateArraySize();
 
         array[size] = data;
         size++;
@@ -32,13 +28,9 @@ public class ArrayList <T> implements List<T> {
 
     public void addAtFront(T data) throws NotNullAllowedException {
 
-        if(data == null) {
-            throw new NotNullAllowedException();
-        }
+        validateData(data);
 
-        if(isFull()) {
-            increaseSize();
-        }
+        validateArraySize();
 
         Iterator<T> iterator = getIteratorAt(size-1);
         int currentIndex = size;
@@ -54,9 +46,7 @@ public class ArrayList <T> implements List<T> {
 
     public void remove(int index) throws BadIndexException {
 
-        if(isInvalidIndex(index)){
-            throw new BadIndexException();
-        }
+        validateIndex(index);
 
         for(int i = index ; i < size - 1; i++){
             array[i] = array[i+1];
@@ -77,13 +67,9 @@ public class ArrayList <T> implements List<T> {
 
     public void setAt(int index, T data) throws BadIndexException, NotNullAllowedException {
 
-        if(data == null) {
-            throw new NotNullAllowedException();
-        }
+        validateData(data);
 
-        if(isInvalidIndex(index)){
-            throw new BadIndexException();
-        }
+        validateIndex(index);
 
         array[index] = data;
 
@@ -91,9 +77,7 @@ public class ArrayList <T> implements List<T> {
 
     public T getAt(int index) throws BadIndexException{
 
-        if(isInvalidIndex(index)){
-            throw new BadIndexException();
-        }
+        validateIndex(index);
 
         return array[index];
 
@@ -125,6 +109,24 @@ public class ArrayList <T> implements List<T> {
     }
 
     //internal methods
+
+    private void validateArraySize() {
+        if(isFull()) {
+            increaseSize();
+        }
+    }
+
+    private void validateIndex(int index) throws BadIndexException {
+        if(isInvalidIndex(index)){
+            throw new BadIndexException();
+        }
+    }
+
+    private void validateData(T data) throws NotNullAllowedException {
+        if(data == null) {
+            throw new NotNullAllowedException();
+        }
+    }
 
     private int getMaxCapacity() {
         return array.length;

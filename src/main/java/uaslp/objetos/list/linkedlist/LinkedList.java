@@ -13,9 +13,7 @@ public class LinkedList <T> implements List<T> {
 
     public void addAtTail(T data) throws NotNullAllowedException {
 
-        if(data == null) {
-            throw new NotNullAllowedException();
-        }
+        validateData(data);
 
         Node<T> node = new Node<>(data);
         node.previous = tail;
@@ -32,9 +30,7 @@ public class LinkedList <T> implements List<T> {
 
     public void addAtFront(T data) throws NotNullAllowedException{
 
-        if(data == null) {
-            throw new NotNullAllowedException();
-        }
+        validateData(data);
 
         Node<T> node = new Node<>(data);
         node.next = head;
@@ -51,9 +47,7 @@ public class LinkedList <T> implements List<T> {
 
     public void remove(int index) throws BadIndexException{
 
-        if(isInvalidIndex(index)){
-            throw new BadIndexException();
-        }
+        validateIndex(index);
 
         //cast is needed to make use of getCurrentNode internal method
         LinkedListIterator<T> iterator = (LinkedListIterator<T>) getIterator();
@@ -83,13 +77,9 @@ public class LinkedList <T> implements List<T> {
 
     public void setAt(int index, T data) throws BadIndexException, NotNullAllowedException{
 
-        if(data == null) {
-            throw new NotNullAllowedException();
-        }
+        validateData(data);
 
-        if(isInvalidIndex(index)){
-            throw new BadIndexException();
-        }
+        validateIndex(index);
 
         LinkedListIterator<T> iterator = (LinkedListIterator<T>) getIterator();
         int current_index = 0;
@@ -105,9 +95,7 @@ public class LinkedList <T> implements List<T> {
 
     public T getAt(int index) throws BadIndexException{
 
-        if(isInvalidIndex(index)){
-            throw new BadIndexException();
-        }
+        validateIndex(index);
 
         Iterator<T> iterator = getIterator();
         int current_index = 0;
@@ -148,6 +136,18 @@ public class LinkedList <T> implements List<T> {
     }
 
     //internal methods
+
+    private void validateIndex(int index) {
+        if(isInvalidIndex(index)){
+            throw new BadIndexException();
+        }
+    }
+
+    private void validateData(T data) throws NotNullAllowedException {
+        if(data == null) {
+            throw new NotNullAllowedException();
+        }
+    }
 
     private boolean isInvalidIndex(int index){
         return index >= size || index < 0;
