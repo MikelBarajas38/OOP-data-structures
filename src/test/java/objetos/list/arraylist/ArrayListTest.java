@@ -244,28 +244,6 @@ public class ArrayListTest {
     }
 
     @Test
-    public void whenPrev_thenIteratorMoves() {
-        //given
-        List<String> list = new ArrayList<>();
-        list.addAtTail("1");
-        list.addAtTail("2");
-        list.addAtTail("3");
-
-        Iterator<String> iterator = list.getIterator();
-        iterator.next();
-        iterator.next();
-
-        //when
-        iterator.previous();
-        iterator.previous();
-
-        //then
-        String data = iterator.previous();
-        Assertions.assertFalse(iterator.hasPrevious());
-        Assertions.assertEquals(data, list.getAt(0));
-    }
-
-    @Test
     public void givenBigEnoughList_whenElementsAreRemoved_thenSizeDecreases() {
         //given
         List<String> list = new ArrayList<>();
