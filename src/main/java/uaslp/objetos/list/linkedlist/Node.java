@@ -6,10 +6,6 @@ class Node <T>{
     Node<T> next;
     Node<T> previous;
 
-    Node() {
-        data = null;
-    }
-
     Node(T data) {
         this.data = data;
     }

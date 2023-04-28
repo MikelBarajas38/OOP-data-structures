@@ -57,6 +57,7 @@ public class LinkedList <T> implements List<T> {
             iterator.next();
             current_index++;
         }
+
         deleteNode(iterator.getCurrentNode());
         size--;
 
@@ -71,6 +72,7 @@ public class LinkedList <T> implements List<T> {
             iterator.next();
             deleteNode(temp);
         }
+
         size = 0;
 
     }
@@ -154,11 +156,6 @@ public class LinkedList <T> implements List<T> {
     }
 
     private void deleteNode(Node<T> node) {
-
-        //node doesn't exists
-        if(node == null) {
-            return;
-        }
 
         //list contains single element
         if(head == node && tail == node){
