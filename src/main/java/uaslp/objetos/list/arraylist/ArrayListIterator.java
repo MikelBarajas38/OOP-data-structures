@@ -24,10 +24,7 @@ public class ArrayListIterator <T> implements Iterator<T> {
 
     public T next() {
         T data = null;
-        try{
-            data = list.getAt(currentIndex);
-        } catch(BadIndexException ignored){
-        }
+        data = list.getAt(currentIndex);
         currentIndex++;
         return data;
     }
@@ -38,10 +35,7 @@ public class ArrayListIterator <T> implements Iterator<T> {
 
     public T previous() {
         T data = null;
-        try{
-            data = list.getAt(currentIndex);
-        } catch(BadIndexException ignored){
-        }
+        data = list.getAt(currentIndex);
         currentIndex--;
         return data;
     }

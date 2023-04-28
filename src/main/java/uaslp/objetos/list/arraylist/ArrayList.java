@@ -87,10 +87,7 @@ public class ArrayList <T> implements List<T> {
 
         for(int currentIndex = size-1; currentIndex >= 0; currentIndex--){
             if(array[currentIndex].equals(data)){
-                try {
-                    remove(currentIndex);
-                } catch(BadIndexException ignored){
-                }
+                remove(currentIndex);
             }
         }
 
@@ -126,10 +123,6 @@ public class ArrayList <T> implements List<T> {
         if(data == null) {
             throw new NotNullAllowedException();
         }
-    }
-
-    private int getMaxCapacity() {
-        return array.length;
     }
 
     private void increaseSize() {

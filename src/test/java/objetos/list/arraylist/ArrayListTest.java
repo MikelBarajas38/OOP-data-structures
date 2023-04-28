@@ -1,22 +1,21 @@
-package objetos.list.linkedlist;
+package objetos.list.arraylist;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import uaslp.objetos.list.Iterator;
 import uaslp.objetos.list.List;
-
+import uaslp.objetos.list.arraylist.ArrayList;
 import uaslp.objetos.list.exceptions.BadIndexException;
 import uaslp.objetos.list.exceptions.NotNullAllowedException;
-import uaslp.objetos.list.linkedlist.LinkedList;
 
-public class LinkedListTest {
+public class ArrayListTest {
 
     @Test
     public void whenListIsCreated_thenItIsEmpty() {
 
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
 
         //when
         boolean isEmpty = list.isEmpty();
@@ -31,7 +30,7 @@ public class LinkedListTest {
     @Test
     public void givenAnEmptyList_whenAddAtTail_thenFirstElementIsInserted() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
 
         //when
         list.addAtTail("1");
@@ -45,7 +44,7 @@ public class LinkedListTest {
     @Test
     public void givenAnNonEmptyList_whenAddAtTail_thenElementIsInserted() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
 
         //when
         list.addAtTail("1");
@@ -60,7 +59,7 @@ public class LinkedListTest {
     @Test
     public void givenAnEmptyList_whenAddAtFront_thenFirstElementIsInserted() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
 
         //when
         list.addAtFront("1");
@@ -74,7 +73,7 @@ public class LinkedListTest {
     @Test
     public void givenAnNonEmptyList_whenAddAtFront_thenElementIsInserted() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
 
         //when
         list.addAtFront("1");
@@ -89,7 +88,7 @@ public class LinkedListTest {
     @Test
     public void whenNullIsAdded_thenNotNullAllowedExceptionIsThrown() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
 
         //when - then
         Assertions.assertThrows(NotNullAllowedException.class, () -> list.addAtTail(null));
@@ -97,7 +96,7 @@ public class LinkedListTest {
 
     @Test
     public void whenElementIsRemoved_thenElementGetsDeleted() {
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
         list.addAtTail("1");
         list.addAtTail("2");
         list.addAtTail("3");
@@ -115,7 +114,7 @@ public class LinkedListTest {
     @Test
     public void givenListWithOneElement_whenElementIsRemoved_thenListIsEmpty() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
         list.addAtTail("1");
 
         //when
@@ -129,7 +128,7 @@ public class LinkedListTest {
     @Test
     public void whenFirstElementIsRemoved_thenHeadChanges() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
         list.addAtTail("1");
         list.addAtTail("2");
 
@@ -145,7 +144,7 @@ public class LinkedListTest {
     @Test
     public void whenLastElementIsRemoved_thenTailChanges() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
         list.addAtTail("1");
         list.addAtTail("2");
 
@@ -161,7 +160,7 @@ public class LinkedListTest {
     @Test
     public void givenAnEmptyList_whenRemoveAll_thenNothingHappens() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
 
         //when
         list.removeAll();
@@ -174,7 +173,7 @@ public class LinkedListTest {
     @Test
     public void givenAnNonEmptyList_whenRemoveAll_listIsEmptied() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
         list.addAtTail("1");
         list.addAtTail("2");
         list.addAtTail("3");
@@ -190,7 +189,7 @@ public class LinkedListTest {
     @Test
     public void whenRemoveAllWithValueX_allElementsXAreRemoved() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
         list.addAtTail("1");
         list.addAtTail("2");
         list.addAtTail("1");
@@ -208,10 +207,9 @@ public class LinkedListTest {
     @Test
     public void whenSetAt_ElementIsModified() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
         list.addAtTail("1");
         list.addAtTail("2");
-
 
         //when
         list.setAt(0,"A");
@@ -227,7 +225,7 @@ public class LinkedListTest {
     @Test
     public void whenSetAtIsNull_thenNotNullAllowedExceptionIsThrown() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
         list.addAtTail("1");
 
         //when - then
@@ -237,7 +235,7 @@ public class LinkedListTest {
     @Test
     public void whenInvalidIndexIsAccessed_thenBadIndexExceptionIsThrown() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
 
         //when - then
         Assertions.assertThrows(BadIndexException.class, () -> list.getAt(0));
@@ -248,7 +246,7 @@ public class LinkedListTest {
     @Test
     public void whenPrev_thenIteratorMoves() {
         //given
-        List<String> list = new LinkedList<>();
+        List<String> list = new ArrayList<>();
         list.addAtTail("1");
         list.addAtTail("2");
         list.addAtTail("3");
@@ -265,6 +263,24 @@ public class LinkedListTest {
         String data = iterator.previous();
         Assertions.assertFalse(iterator.hasPrevious());
         Assertions.assertEquals(data, list.getAt(0));
+    }
+
+    @Test
+    public void givenBigEnoughList_whenElementsAreRemoved_thenSizeDecreases() {
+        //given
+        List<String> list = new ArrayList<>();
+
+        for(int i = 0; i < 12; i++) {
+            list.addAtTail(Integer.toString(i));
+        }
+
+        //when
+        for(int i = 0; i < 12; i++) {
+            list.remove(0);
+        }
+
+        //then
+        Assertions.assertTrue(list.isEmpty());
     }
 
 }
